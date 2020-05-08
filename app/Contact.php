@@ -8,7 +8,7 @@ class Contact extends  Model
 {
 
     protected $fillable = [
-        'first_name', 'middle_name', 'last_name','address_1','address2','phone_number'
+        'first_name', 'middle_name', 'last_name','address_1','address_2','phone_number'
     ];
 
 
