@@ -29,7 +29,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        $contact = Contact::create($request->validated());
+        Contact::create( $request->except(['_token']));
         return redirect('/');
     }
     public function update($contact_id,Request $request)
@@ -37,11 +37,11 @@ class ContactController extends Controller
 
         $validator = Validator::make($request->all(), Contact::rules($contact_id));
 
-         if ($validator->fails()) {
+        if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
-        $contact = Contact::find($contact_id)
+        Contact::find($contact_id)
             ->update(
                 $request->except(['_token'])
             );
