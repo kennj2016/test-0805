@@ -14,6 +14,7 @@
         <th>Address 1</th>
         <th>Address 2</th>
         <th>Phone Number</th>
+        <th></th>
         </thead>
         <tbody>
         @foreach ($contacts as $contact)
@@ -24,6 +25,7 @@
                 <td>{{ $contact->address_1 }}</td>
                 <td>{{ $contact->address_2 }}</td>
                 <td>{{ $contact->phone_number }}</td>
+                <td><a href="/contact/{{$contact->id}}">EDIT</a></td>
             </tr>
         @endforeach
         </tbody>

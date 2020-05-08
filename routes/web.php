@@ -14,7 +14,10 @@
 
 
 Route::post('/', 'ContactController@store');
+Route::post('/contact/{id}', 'ContactController@update');
+
 Route::get('/', 'ContactController@index');
+Route::get('/contact/{id}', 'ContactController@show');
 Route::get('/contact', function () {
     return view('contacts.create');
 });

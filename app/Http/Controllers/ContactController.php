@@ -6,6 +6,8 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Resources\ContactResource;
 use Illuminate\Http\Request;
 use App\Contact;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class ContactController extends Controller
 {
@@ -28,6 +30,21 @@ class ContactController extends Controller
     public function store(ContactRequest $request)
     {
         $contact = Contact::create($request->validated());
+        return redirect('/');
+    }
+    public function update($contact_id,Request $request)
+    {
+
+        $validator = Validator::make($request->all(), Contact::rules($contact_id));
+
+         if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $contact = Contact::find($contact_id)
+            ->update(
+                $request->except(['_token'])
+            );
         return redirect('/');
     }
 
